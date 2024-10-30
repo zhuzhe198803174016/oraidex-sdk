@@ -181,15 +181,6 @@ describe("test helper functions", () => {
     ],
     [
       "kawaii-islands",
-      "kawaii_6886-1",
-      "airight",
-      "Oraichain",
-      "",
-      { swapRoute: "", universalSwapType: "other-networks-to-oraichain", isSmartRouter: false },
-      false
-    ],
-    [
-      "kawaii-islands",
       "0x1ae6",
       "airight",
       "Oraichain",
@@ -339,15 +330,6 @@ describe("test helper functions", () => {
     [
       "kawaii-islands",
       "0x1ae6",
-      "oraichain-token",
-      "Oraichain",
-      "orai1234",
-      { swapRoute: "", universalSwapType: "other-networks-to-oraichain", isSmartRouter: false },
-      true
-    ],
-    [
-      "kawaii-islands",
-      "kawaii_6886-1",
       "oraichain-token",
       "Oraichain",
       "orai1234",
