@@ -41,7 +41,8 @@ import {
   OSMOSIS_ROUTER_CONTRACT,
   cosmosChains,
   toDisplay,
-  ChainIdEnum
+  ChainIdEnum,
+  isCosmosChain
 } from "@oraichain/oraidex-common";
 import { ethers } from "ethers";
 import { UniversalSwapHelper } from "./helper";
@@ -102,7 +103,9 @@ export class UniversalSwapHandler {
       if (tronWeb && tronWeb.defaultAddress?.base58) return tronToEthAddress(tronWeb.defaultAddress.base58);
       throw generateError("Cannot find tron web to nor tron address to send to Tron network");
     }
-    return this.config.cosmosWallet.getKeplrAddr(toChainId);
+
+    if (isCosmosChain(toChainId.toString())) return this.config.cosmosWallet.getKeplrAddr(toChainId as CosmosChainId);
+    throw generateError(`Cannot not get address for chain: ${toChainId}`);
   }
 
   /**

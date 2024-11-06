@@ -78,26 +78,29 @@ export type NetworkName =
   | "Injective"
   | "Noble"
   | "Neutaro"
-  | "Celestia";
+  | "Celestia"
+  | "Ton";
 
-export type CosmosChainId =
-  | "Oraichain" // oraichain
-  | "oraibridge-subnet-2" // oraibridge
-  | "osmosis-1" // osmosis
-  | "cosmoshub-4" // cosmos hub
-  | "injective-1" // injective network
-  | "kawaii_6886-1" // kawaii subnetwork
-  | "noble-1" // noble network
-  | "Neutaro-1" // neutaro network;
-  | "celestia"; // Celestia
+export const cosmosChainIds = [
+  "Oraichain", // oraichain
+  "oraibridge-subnet-2", // oraibridge
+  "osmosis-1", // osmosis
+  "cosmoshub-4", // cosmos hub
+  "injective-1", // injective network
+  "kawaii_6886-1", // kawaii subnetwork
+  "noble-1", // noble network
+  "Neutaro-1", // neutaro network;
+  "celestia" // Celestia
+] as const;
+export type CosmosChainId = (typeof cosmosChainIds)[number];
 
-export type EvmChainId =
-  | "0x38" // bsc
-  | "0x01" // ethereum
-  | "0x1ae6" // kawaii
-  | "0x2b6653dc"; // tron
+export const evmChainIds = ["0x38", "0x01", "0x1ae6", "0x2b6653dc"] as const;
+export type EvmChainId = (typeof evmChainIds)[number];
 
-export type NetworkChainId = CosmosChainId | EvmChainId;
+export const tonChainId = ["Ton"] as const; // FIXME: don;t know ton chainID
+export type TonChainId = (typeof tonChainId)[number];
+
+export type NetworkChainId = CosmosChainId | EvmChainId | TonChainId;
 
 export type CoinGeckoId =
   | "oraichain-token"
@@ -127,7 +130,7 @@ export type CoinGeckoId =
   | "simon-s-cat"
   | "hamster-kombat";
 
-export type NetworkType = "cosmos" | "evm";
+export type NetworkType = "cosmos" | "evm" | "ton";
 export interface NetworkConfig {
   coinType?: number;
   explorer: string;

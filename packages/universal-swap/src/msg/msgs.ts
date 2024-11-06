@@ -1,5 +1,7 @@
 import {
   generateError,
+  isEvmChain,
+  isTonChain,
   ORAI_BRIDGE_EVM_DENOM_PREFIX,
   ORAI_BRIDGE_EVM_TRON_DENOM_PREFIX
 } from "@oraichain/oraidex-common";
@@ -47,9 +49,9 @@ const buildMemoSwap = (
       oraichainMsg.setMinimumReceiveForSwap(slippage);
       // we have 2 cases:
       // - Previous chain use IBC bridge to Oraichain
-      // -  Previous chain use IBC Wasm bridge to Oraichain (EVM, noble)
+      // -  Previous chain use IBC Wasm bridge to Oraichain (EVM, noble, ton)
       let msgInfo =
-        previousChain && (previousChain == "noble-1" || previousChain.startsWith("0x"))
+        previousChain && (previousChain == "noble-1" || isEvmChain(previousChain) || isTonChain(previousChain))
           ? oraichainMsg.genMemoForIbcWasm()
           : oraichainMsg.genMemoAsMiddleware();
       return msgInfo;

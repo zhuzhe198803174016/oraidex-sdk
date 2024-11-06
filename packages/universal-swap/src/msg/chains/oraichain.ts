@@ -9,7 +9,9 @@ import {
   CONVERTER_CONTRACT,
   generateError,
   IBC_TRANSFER_TIMEOUT,
+  isCosmosChain,
   isEthAddress,
+  isTonChain,
   NetworkChainId
 } from "@oraichain/oraidex-common";
 import { toBinary } from "@cosmjs/cosmwasm-stargate";
@@ -23,6 +25,7 @@ import { ChainMsg } from "./chain";
 export class OraichainMsg extends ChainMsg {
   SWAP_VENUE_NAME = "oraidex";
   ENTRY_POINT_CONTRACT = "orai1yglsm0u2x3xmct9kq3lxa654cshaxj9j5d9rw5enemkkkdjgzj7sr3gwt0";
+  TON_BRIDGE_ADAPTER = "orai159l8l9c5ckhqpuwdfgs9p4v599nqt3cjlfahalmtrhfuncnec2ms5mz60e";
 
   constructor(
     path: Path,
@@ -162,7 +165,24 @@ export class OraichainMsg extends ChainMsg {
       };
     }
 
-    // case 2: ibc transfer
+    // case 2: bridge to ton
+    if (isTonChain(bridgeInfo.toChain)) {
+      return {
+        contractCall: {
+          contractAddress: this.TON_BRIDGE_ADAPTER,
+          msg: toBinary({
+            bridge_to_ton: {
+              to: bridgeInfo.receiver,
+              denom: bridgeInfo.toToken,
+              timeout: Math.floor(new Date().getTime() / 1000) + IBC_TRANSFER_TIMEOUT,
+              recovery_addr: this.currentChainAddress
+            }
+          })
+        }
+      };
+    }
+
+    // case 3: ibc transfer
     if (bridgeInfo.sourcePort == "transfer") {
       return {
         ibcTransferMsg: {
@@ -175,8 +195,7 @@ export class OraichainMsg extends ChainMsg {
       };
     }
 
-    // case 3: ibc wasm transfer
-
+    // case 4: ibc wasm transfer
     if (bridgeInfo.sourcePort.startsWith("wasm")) {
       // handle noble & evm case
       let prefix = "";
@@ -249,7 +268,24 @@ export class OraichainMsg extends ChainMsg {
       };
     }
 
-    // case 2: ibc transfer
+    // case 2: bridge to ton
+    if (isTonChain(bridgeInfo.toChain)) {
+      return {
+        contract_call: {
+          contract_address: this.TON_BRIDGE_ADAPTER,
+          msg: toBinary({
+            bridge_to_ton: {
+              to: bridgeInfo.receiver,
+              denom: bridgeInfo.toToken,
+              timeout: Math.floor(new Date().getTime() / 1000) + IBC_TRANSFER_TIMEOUT,
+              recovery_addr: this.currentChainAddress
+            }
+          })
+        }
+      };
+    }
+
+    // case 3: ibc transfer
     if (bridgeInfo.sourcePort == "transfer") {
       return {
         ibc_transfer: {
@@ -263,7 +299,7 @@ export class OraichainMsg extends ChainMsg {
       };
     }
 
-    // case 3: ibc wasm transfer
+    // case 4: ibc wasm transfer
     if (bridgeInfo.sourcePort.startsWith("wasm")) {
       // handle noble & evm case
       let prefix = "";
@@ -375,7 +411,7 @@ export class OraichainMsg extends ChainMsg {
 
     if (swapOps.length == 0) {
       // ibc transfer
-      if (bridgeInfo.sourcePort == "transfer") {
+      if (bridgeInfo.sourcePort == "transfer" && isCosmosChain(bridgeInfo.toChain)) {
         return {
           typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
           value: {

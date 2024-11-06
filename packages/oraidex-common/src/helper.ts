@@ -19,7 +19,7 @@ import {
   MULTIPLIER,
   CW20_DECIMALS
 } from "./constant";
-import { CoinGeckoId, NetworkChainId, cosmosChains } from "./network";
+import { CoinGeckoId, NetworkChainId, cosmosChainIds, cosmosChains, evmChainIds, tonChainId } from "./network";
 import {
   AmountDetails,
   TokenInfo,
@@ -602,4 +602,19 @@ export const checkValidateAddressWithNetwork = (address: string, network: Networ
     default:
       return validateAndIdentifyCosmosAddress(address, network);
   }
+};
+
+export const isCosmosChain = (chainId: string): boolean => {
+  const hasValue = cosmosChainIds.find((id) => id === chainId);
+  return Boolean(hasValue);
+};
+
+export const isEvmChain = (chainId: string): boolean => {
+  const hasValue = evmChainIds.find((id) => id === chainId);
+  return Boolean(hasValue);
+};
+
+export const isTonChain = (chainId: string): boolean => {
+  const hasValue = tonChainId.find((id) => id === chainId);
+  return Boolean(hasValue);
 };
