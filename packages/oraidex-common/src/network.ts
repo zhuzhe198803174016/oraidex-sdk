@@ -60,7 +60,9 @@ import {
   PEPE_ETH_CONTRACT,
   PEPE_BSC_CONTRACT,
   CAT_BSC_CONTRACT,
-  HMSTR_ORAICHAIN_DENOM
+  HMSTR_ORAICHAIN_DENOM,
+  DOGE_BNB_ORAICHAIN_DENOM,
+  DOGE_BSC_CONTRACT
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -125,7 +127,8 @@ export type CoinGeckoId =
   | "the-open-network"
   | "pepe"
   | "simon-s-cat"
-  | "hamster-kombat";
+  | "hamster-kombat"
+  | "dogecoin";
 
 export type NetworkType = "cosmos" | "evm";
 export interface NetworkConfig {
@@ -156,7 +159,7 @@ export type BridgeAppCurrency = FeeCurrency & {
   readonly Icon?: CoinIcon;
   readonly IconLight?: CoinIcon;
   readonly bridgeNetworkIdentifier?: EvmChainId;
-  readonly coinDecimals: 6 | 9 | 18;
+  readonly coinDecimals: 6 | 8 | 9 | 18;
   readonly contractAddress?: string;
   readonly prefixToken?: string;
 };
@@ -336,6 +339,14 @@ export const oraichainNetwork: CustomChainInfo = {
       bridgeTo: ["0x38", "0x01"],
       coinDecimals: 6,
       coinImageUrl: "https://assets.coingecko.com/coins/images/29850/standard/pepe-token.jpeg?1696528776"
+    },
+    {
+      coinDenom: "DOGE",
+      coinMinimalDenom: DOGE_BNB_ORAICHAIN_DENOM,
+      coinDecimals: 8,
+      bridgeTo: ["0x38"],
+      coinGeckoId: "dogecoin",
+      coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
     },
     // {
     //   coinDenom: "CAT",
@@ -691,6 +702,15 @@ export const chainInfos: CustomChainInfo[] = [
         coinGeckoId: "pepe",
         prefixToken: ORAI_BRIDGE_EVM_ETH_DENOM_PREFIX,
         coinImageUrl: "https://assets.coingecko.com/coins/images/29850/standard/pepe-token.jpeg?1696528776"
+      },
+      {
+        coinDenom: "DOGE",
+        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + DOGE_BSC_CONTRACT,
+        bridgeNetworkIdentifier: "0x38",
+        coinDecimals: 8,
+        prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
+        coinGeckoId: "dogecoin",
+        coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
       }
       // {
       //   coinDenom: "CAT",
@@ -1080,6 +1100,15 @@ export const chainInfos: CustomChainInfo[] = [
         bridgeTo: ["Oraichain"],
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinImageUrl: "https://assets.coingecko.com/coins/images/29850/standard/pepe-token.jpeg?1696528776"
+      },
+      {
+        coinDenom: "DOGE",
+        coinMinimalDenom: "bep20_doge",
+        contractAddress: DOGE_BSC_CONTRACT,
+        coinDecimals: 8,
+        coinGeckoId: "dogecoin",
+        bridgeTo: ["Oraichain"],
+        coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
       }
       // {
       //   coinDenom: "CAT",
