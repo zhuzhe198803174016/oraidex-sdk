@@ -1117,6 +1117,7 @@ export const chainInfos: CustomChainInfo[] = [
         coinDecimals: 8,
         coinGeckoId: "dogecoin",
         bridgeTo: ["Oraichain"],
+        prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
       }
       // {
