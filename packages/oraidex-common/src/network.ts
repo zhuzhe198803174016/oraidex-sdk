@@ -160,11 +160,7 @@ export type BridgeAppCurrency = FeeCurrency & {
   readonly Icon?: CoinIcon;
   readonly IconLight?: CoinIcon;
   readonly bridgeNetworkIdentifier?: EvmChainId;
-<<<<<<< HEAD
-  readonly coinDecimals: 6 | 9 | 14 | 18;
-=======
-  readonly coinDecimals: 6 | 8 | 9 | 18;
->>>>>>> main
+  readonly coinDecimals: 6 | 9 | 14 | 18 | 8;
   readonly contractAddress?: string;
   readonly prefixToken?: string;
 };
