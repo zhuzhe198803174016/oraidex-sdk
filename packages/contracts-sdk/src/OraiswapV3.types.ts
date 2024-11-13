@@ -1,5 +1,7 @@
+export type Addr = string;
 export type Percentage = number;
 export interface InstantiateMsg {
+  incentives_fund_manager: Addr;
   protocol_fee: Percentage;
 }
 export type ExecuteMsg = {
@@ -9,6 +11,10 @@ export type ExecuteMsg = {
 } | {
   withdraw_protocol_fee: {
     pool_key: PoolKey;
+  };
+} | {
+  withdraw_all_protocol_fee: {
+    receiver?: Addr | null;
   };
 } | {
   change_protocol_fee: {
@@ -131,8 +137,12 @@ export type ExecuteMsg = {
   claim_incentive: {
     index: number;
   };
+} | {
+  update_pool_status: {
+    pool_key: PoolKey;
+    status?: PoolStatus | null;
+  };
 };
-export type Addr = string;
 export type Liquidity = string;
 export type SqrtPrice = string;
 export type TokenAmount = string;
@@ -155,6 +165,7 @@ export type AssetInfo = {
     denom: string;
   };
 };
+export type PoolStatus = "opening" | "paused" | "swap_only" | "lp_only";
 export interface PoolKey {
   fee_tier: FeeTier;
   token_x: string;
@@ -180,6 +191,8 @@ export type QueryMsg = {
   admin: {};
 } | {
   protocol_fee: {};
+} | {
+  incentives_fund_manager: {};
 } | {
   position: {
     index: number;
@@ -379,6 +392,7 @@ export interface Pool {
   liquidity: Liquidity;
   sqrt_price: SqrtPrice;
   start_timestamp: number;
+  status?: PoolStatus | null;
 }
 export interface IncentiveRecord {
   id: number;

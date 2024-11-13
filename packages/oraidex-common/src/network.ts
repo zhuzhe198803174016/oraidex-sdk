@@ -61,7 +61,9 @@ import {
   PEPE_BSC_CONTRACT,
   CAT_BSC_CONTRACT,
   HMSTR_ORAICHAIN_DENOM,
-  OBTC_ORAICHAIN_EXT_DENOM
+  OBTC_ORAICHAIN_EXT_DENOM,
+  DOGE_BNB_ORAICHAIN_DENOM,
+  DOGE_BSC_CONTRACT
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -126,7 +128,8 @@ export type CoinGeckoId =
   | "the-open-network"
   | "pepe"
   | "simon-s-cat"
-  | "hamster-kombat";
+  | "hamster-kombat"
+  | "dogecoin";
 
 export type NetworkType = "cosmos" | "evm";
 export interface NetworkConfig {
@@ -157,7 +160,11 @@ export type BridgeAppCurrency = FeeCurrency & {
   readonly Icon?: CoinIcon;
   readonly IconLight?: CoinIcon;
   readonly bridgeNetworkIdentifier?: EvmChainId;
+<<<<<<< HEAD
   readonly coinDecimals: 6 | 9 | 14 | 18;
+=======
+  readonly coinDecimals: 6 | 8 | 9 | 18;
+>>>>>>> main
   readonly contractAddress?: string;
   readonly prefixToken?: string;
 };
@@ -338,6 +345,14 @@ export const oraichainNetwork: CustomChainInfo = {
       coinDecimals: 6,
       coinImageUrl: "https://assets.coingecko.com/coins/images/29850/standard/pepe-token.jpeg?1696528776"
     },
+    {
+      coinDenom: "DOGE",
+      coinMinimalDenom: DOGE_BNB_ORAICHAIN_DENOM,
+      coinDecimals: 8,
+      bridgeTo: ["0x38"],
+      coinGeckoId: "dogecoin",
+      coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
+    },
     // {
     //   coinDenom: "CAT",
     //   coinMinimalDenom: CAT_ORAICHAIN_DENOM,
@@ -420,7 +435,7 @@ export const oraichainNetwork: CustomChainInfo = {
       coinMinimalDenom: "kwt",
       type: "cw20",
       contractAddress: KWT_CONTRACT,
-      bridgeTo: ["kawaii_6886-1", "0x38"],
+      bridgeTo: ["0x38"],
       coinDecimals: 6,
       coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/12313.png"
     },
@@ -437,7 +452,7 @@ export const oraichainNetwork: CustomChainInfo = {
       coinMinimalDenom: "milky",
       type: "cw20",
       contractAddress: MILKY_CONTRACT,
-      bridgeTo: ["kawaii_6886-1", "0x38"],
+      bridgeTo: ["0x38"],
       coinDecimals: 6,
       coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/14418.png"
     },
@@ -700,6 +715,15 @@ export const chainInfos: CustomChainInfo[] = [
         coinGeckoId: "pepe",
         prefixToken: ORAI_BRIDGE_EVM_ETH_DENOM_PREFIX,
         coinImageUrl: "https://assets.coingecko.com/coins/images/29850/standard/pepe-token.jpeg?1696528776"
+      },
+      {
+        coinDenom: "DOGE",
+        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + DOGE_BSC_CONTRACT,
+        bridgeNetworkIdentifier: "0x38",
+        coinDecimals: 8,
+        prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
+        coinGeckoId: "dogecoin",
+        coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
       }
       // {
       //   coinDenom: "CAT",
@@ -715,64 +739,6 @@ export const chainInfos: CustomChainInfo[] = [
       name: "OraiBridge Scan",
       txUrl: "https://scan.bridge.orai.io/tx/${txHash}",
       accountUrl: "https://scan.bridge.orai.io/account/{address}"
-    }
-  },
-  {
-    rpc: "https://tendermint1.kawaii.global",
-    rest: "https://cosmos1.kawaii.global",
-    chainId: "kawaii_6886-1",
-    chainName: "Kawaiiverse",
-    networkType: "cosmos",
-    stakeCurrency: KawaiiToken,
-    feeCurrencies: [KawaiiToken],
-    bip44: {
-      coinType: 60
-    },
-    bech32Config: defaultBech32Config("oraie"),
-
-    // features: ['ibc-transfer'],
-    features: ["ibc-transfer", "ibc-go", "stargate", "eth-address-gen", "eth-key-sign", "isEvm", "no-legacy-stdTx"],
-    currencies: [
-      KawaiiToken,
-      {
-        coinDenom: "MILKY",
-        coinGeckoId: "milky-token",
-        coinMinimalDenom: MILKY_SUB_NETWORK_DENOM,
-        coinDecimals: 18,
-        bridgeTo: ["Oraichain", "kawaii_6886-1"],
-        coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/14418.png"
-      },
-      {
-        coinDenom: "ERC20 MILKY",
-        coinMinimalDenom: "erc20_milky",
-        bridgeTo: ["Oraichain", "kawaii_6886-1"],
-        contractAddress: MILKY_ERC_CONTRACT,
-        coinDecimals: 18,
-        coinGeckoId: "milky-token",
-        coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/14418.png"
-      },
-      {
-        coinDenom: "KWT",
-        coinMinimalDenom: KWT_SUB_NETWORK_DENOM,
-        coinDecimals: 18,
-        bridgeTo: ["Oraichain", "kawaii_6886-1"],
-        coinGeckoId: "kawaii-islands",
-        coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/12313.png"
-      },
-      {
-        coinDenom: "ERC20 KWT",
-        bridgeTo: ["Oraichain", "kawaii_6886-1"],
-        coinMinimalDenom: "erc20_kwt",
-        contractAddress: "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd",
-        coinDecimals: 18,
-        coinGeckoId: "kawaii-islands",
-        coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/12313.png"
-      }
-    ],
-    txExplorer: {
-      name: "Kawaiiverse Scan",
-      txUrl: "https://scan.kawaii.global/tx/${txHash}",
-      accountUrl: "https://scan.kawaii.global/account/{address}"
     }
   },
 
@@ -1147,6 +1113,15 @@ export const chainInfos: CustomChainInfo[] = [
         bridgeTo: ["Oraichain"],
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinImageUrl: "https://assets.coingecko.com/coins/images/29850/standard/pepe-token.jpeg?1696528776"
+      },
+      {
+        coinDenom: "DOGE",
+        coinMinimalDenom: "bep20_doge",
+        contractAddress: DOGE_BSC_CONTRACT,
+        coinDecimals: 8,
+        coinGeckoId: "dogecoin",
+        bridgeTo: ["Oraichain"],
+        coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
       }
       // {
       //   coinDenom: "CAT",
@@ -1162,41 +1137,6 @@ export const chainInfos: CustomChainInfo[] = [
       name: "Bsc Scan",
       txUrl: "https://bscscan.com/tx/${txHash}",
       accountUrl: "https://bscscan.com/address/{address}"
-    }
-  },
-  {
-    rpc: "https://endpoint1.kawaii.global",
-    chainId: "0x1ae6",
-    networkType: "evm",
-    chainName: "Kawaiiverse EVM",
-    bip44: {
-      coinType: 60
-    },
-    features: ["isEvm"],
-    currencies: [
-      {
-        coinDenom: "ERC20 MILKY",
-        coinMinimalDenom: "erc20_milky",
-        bridgeTo: ["Oraichain", "kawaii_6886-1"],
-        contractAddress: MILKY_ERC_CONTRACT,
-        coinDecimals: 18,
-        coinGeckoId: "milky-token",
-        coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/14418.png"
-      },
-      {
-        coinDenom: "ERC20 KWT",
-        bridgeTo: ["Oraichain", "kawaii_6886-1"],
-        coinMinimalDenom: "erc20_kwt",
-        contractAddress: "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd",
-        coinDecimals: 18,
-        coinGeckoId: "kawaii-islands",
-        coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/12313.png"
-      }
-    ],
-    txExplorer: {
-      name: "Kawaiiverse Scan",
-      txUrl: "https://scan.kawaii.global/tx/${txHash}",
-      accountUrl: "https://scan.kawaii.global/account/{address}"
     }
   }
 ];
