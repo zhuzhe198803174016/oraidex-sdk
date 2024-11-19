@@ -444,7 +444,7 @@ export class OraichainMsg extends ChainMsg {
             msg: toUtf8(
               JSON.stringify({
                 transfer_to_remote: {
-                  msg
+                  ...msg
                 }
               })
             ),
