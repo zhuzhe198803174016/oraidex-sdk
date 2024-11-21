@@ -51,7 +51,7 @@ const swapTonToOraichain = async () => {
   });
 
   const sender = await wallet.getKeplrAddr("Oraichain");
-  const tonAddr = await tonWallet.sender.address.toRawString();
+  const tonAddr = await tonWallet.sender.address.toString();
   const fromAmount = 3;
   console.log("sender: ", sender);
   console.log("tonAddr: ", tonAddr);

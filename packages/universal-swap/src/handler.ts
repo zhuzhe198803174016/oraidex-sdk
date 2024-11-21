@@ -65,7 +65,7 @@ import { OraiswapRouterQueryClient } from "@oraichain/oraidex-contracts-sdk";
 import { Affiliate } from "@oraichain/oraidex-contracts-sdk/build/OraiswapMixedRouter.types";
 import { COSMOS_CHAIN_IDS, EVM_CHAIN_IDS } from "@oraichain/common";
 import { generateMsgSwap } from "./msg/msgs";
-import { calculateTimeoutTimestampTon, createTonBridgeHandler } from "@oraichain/tonbridge-sdk";
+// import { calculateTimeoutTimestampTon, createTonBridgeHandler } from "@oraichain/tonbridge-sdk";
 import { toNano } from "@ton/core";
 import { getHttpEndpoint } from "@orbs-network/ton-access";
 
@@ -1256,10 +1256,13 @@ export class UniversalSwapHandler {
         );
     }
 
+    const { createTonBridgeHandler, calculateTimeoutTimestampTon } = await import(
+      "@oraichain/tonbridge-sdk/build/utils"
+    );
+
     const tonCenterUrl = await getHttpEndpoint({
       network: "mainnet"
     });
-
     const handler = await createTonBridgeHandler(
       this.config.cosmosWallet,
       this.config.tonWallet,
