@@ -328,18 +328,18 @@ describe("test build oraichain msg", () => {
       chainId: "Oraichain",
       tokenIn: "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/ton",
       tokenInAmount: "999000",
-      tokenOut: "Ton",
+      tokenOut: "ton",
       tokenOutAmount: "999000",
-      tokenOutChainId: "Ton",
+      tokenOutChainId: "ton",
       actions: [
         {
           type: "Bridge",
           protocol: "Bridge",
           tokenIn: "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/ton",
           tokenInAmount: "999000",
-          tokenOut: "Ton",
+          tokenOut: "ton",
           tokenOutAmount: "999000",
-          tokenOutChainId: "Ton",
+          tokenOutChainId: "ton",
           bridgeInfo: {
             port: "transfer", // fake port
             channel: "ton-channel" // fake channel
@@ -358,9 +358,9 @@ describe("test build oraichain msg", () => {
       receiver: receiver,
       timeout: +calculateTimeoutTimestamp(IBC_TRANSFER_TIMEOUT),
       fromToken: "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/ton",
-      toToken: "Ton",
+      toToken: "ton",
       fromChain: "Oraichain",
-      toChain: "Ton"
+      toChain: "ton"
     });
     expect(swapOps).toEqual([]);
 

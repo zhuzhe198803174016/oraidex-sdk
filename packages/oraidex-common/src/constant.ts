@@ -118,6 +118,17 @@ export const WETH_CONTRACT = "orai1dqa52a7hxxuv8ghe7q5v0s36ra0cthea960q2cukznleq
 export const BTC_CONTRACT = "orai10g6frpysmdgw5tdqke47als6f97aqmr8s3cljsvjce4n5enjftcqtamzsd";
 export const OCH_CONTRACT = "orai1hn8w33cqvysun2aujk5sv33tku4pgcxhhnsxmvnkfvdxagcx0p8qa4l98q";
 
+// config for Ton Token
+export const TON20_USDT_CONTRACT = "EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs";
+export const TON_CONTRACT = "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c";
+export const TON_BRIDGE_ADAPTER = "EQC-aFP0rJXwTgKZQJPbPfTSpBFc8wxOgKHWD9cPvOl_DnaY";
+export const TON_LIGHT_CLIENT = "EQDzy_POlimFDyzrHd3OQsb9sZCngyG3O7Za4GRFzM-rrO93";
+export const TON_WHITE_LIST = "EQATDM6mfPZjPDMD9TVa6D9dlbmAKY5w6xOJiTXJ9Nqj_dsu";
+export const TON_NATIVE_DENOM = "ton";
+
+export const TON_BRIDGE_ADAPTER_ORAICHAIN = "orai159l8l9c5ckhqpuwdfgs9p4v599nqt3cjlfahalmtrhfuncnec2ms5mz60e";
+export const TOKEN_FACTORY = "orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9";
+
 // config for oraichain contract
 export const FACTORY_CONTRACT = "orai1hemdkz4xx9kukgrunxu3yw0nvpyxf34v82d2c8";
 export const FACTORY_V2_CONTRACT = "orai167r4ut7avvgpp3rlzksz6vw5spmykluzagvmj3ht845fjschwugqjsqhst";

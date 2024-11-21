@@ -572,19 +572,30 @@ export const validateEvmAddress = (address: string, network: string) => {
   }
 };
 
-export const validateTronAddress = (address: string, network: string) => {
-  try {
-    if (!/T[a-zA-Z0-9]{32}/.test(address)) {
-      throw new Error("Invalid tron address");
-    }
+const isValidTronAddress = (address: string): boolean => /T[a-zA-Z0-9]{32}/.test(address);
+const isValidTonAddress = (address: string): boolean => /^(0|-1):([a-f0-9]{64}|[A-F0-9]{64})$/.test(address);
 
+export const validateAddress = (address: string, network: string) => {
+  try {
+    let isValid: boolean;
+    switch (network) {
+      case "0x2b6653dc":
+        isValid = isValidTronAddress(address);
+        break;
+      case "ton":
+        isValid = isValidTonAddress(address);
+        break;
+      default:
+        throw new Error("Unsupported network");
+    }
     return {
-      isValid: true,
+      isValid,
       network
     };
   } catch (error) {
     return {
-      isValid: false
+      isValid: false,
+      error: error.message
     };
   }
 };
@@ -595,9 +606,10 @@ export const checkValidateAddressWithNetwork = (address: string, network: Networ
     case "0x38":
       return validateEvmAddress(address, network);
 
-    // tron
+    // tron & ton
     case "0x2b6653dc":
-      return validateTronAddress(address, network);
+    case "ton":
+      return validateAddress(address, network);
 
     default:
       return validateAndIdentifyCosmosAddress(address, network);
