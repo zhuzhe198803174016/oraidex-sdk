@@ -575,7 +575,7 @@ export const validateEvmAddress = (address: string, network: string) => {
 const isValidTronAddress = (address: string): boolean => /T[a-zA-Z0-9]{32}/.test(address);
 const isValidTonAddress = (address: string): boolean => /^(0|-1):([a-f0-9]{64}|[A-F0-9]{64})$/.test(address);
 
-export const validateAddress = (address: string, network: string) => {
+export const validateAddressTonTron = (address: string, network: string) => {
   try {
     let isValid: boolean;
     switch (network) {
@@ -609,7 +609,7 @@ export const checkValidateAddressWithNetwork = (address: string, network: Networ
     // tron & ton
     case "0x2b6653dc":
     case "ton":
-      return validateAddress(address, network);
+      return validateAddressTonTron(address, network);
 
     default:
       return validateAndIdentifyCosmosAddress(address, network);

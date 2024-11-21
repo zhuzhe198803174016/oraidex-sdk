@@ -33,7 +33,7 @@ import {
   validateAndIdentifyCosmosAddress,
   validateEvmAddress,
   validateNumber,
-  validateTronAddress,
+  validateAddressTonTron,
   parseAssetInfoFromContractAddrOrDenom
 } from "../src/helper";
 import { CoinGeckoId, NetworkChainId } from "../src/network";
@@ -637,7 +637,7 @@ describe("should helper functions in helper run exactly", () => {
     ["", "0x2b6653dc", false]
   ])("test-validateTronAddress", (value, network, expectation) => {
     try {
-      const { isValid } = validateTronAddress(value, network);
+      const { isValid } = validateAddressTonTron(value, network);
       expect(isValid).toEqual(expectation);
     } catch (error) {
       expect(expectation).toEqual(false);
