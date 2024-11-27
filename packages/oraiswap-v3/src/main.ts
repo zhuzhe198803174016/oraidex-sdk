@@ -29,7 +29,7 @@ async function main() {
   });
 
   const tokenIn = oraichainTokens.find((t) => t.name === "USDT") as TokenItemType;
-  const pool = `${OSMOSIS_ORAICHAIN_DENOM}-orai-${(0.3 / 100) * 10 ** 12}-100`;
+  const pool = `orai-orai12hzjxfh77wl572gdzct2fxv2arxcwh6gykc7qh-3000000000-100`;
   const poolKey = parsePoolKey(pool);
 
   // for (let i = 0; i < 10; i++) {
@@ -42,25 +42,26 @@ async function main() {
 
   // console.log(getTickAtSqrtPrice(314557996917228655710133n, 10));
 
-  // console.time("processZapInPositionLiquidity");
-  // const res = await zapper.processZapInPositionLiquidity({
-  //   poolKey: poolKey,
-  //   tokenIn: tokenIn as TokenItemType,
-  //   amountIn: "1000000000",
-  //   lowerTick: currentTick - tickSpacing * 1,
-  //   upperTick: currentTick + tickSpacing * 1,
-  //   tokenX: oraichainTokens.find((t) => extractAddress(t) === poolKey.token_x) as TokenItemType,
-  //   tokenY: oraichainTokens.find((t) => extractAddress(t) === poolKey.token_y) as TokenItemType,
-  // });
-  // console.timeEnd("processZapInPositionLiquidity");
-
-  const res = await zapper.processZapOutPositionLiquidity({
-    owner: "orai1hvr9d72r5um9lvt0rpkd4r75vrsqtw6yujhqs2",
-    tokenId: 4275,
-    tokenOut: tokenIn,
-    zapFee: 0,
+  console.time("processZapInPositionLiquidity");
+  const res = await zapper.processZapInPositionLiquidity({
+    poolKey: poolKey,
+    tokenIn: tokenIn as TokenItemType,
+    amountIn: "1000000",
+    lowerTick: currentTick,
+    upperTick: currentTick + tickSpacing,
+    tokenX: oraichainTokens.find((t) => extractAddress(t) === poolKey.token_x) as TokenItemType,
+    tokenY: oraichainTokens.find((t) => extractAddress(t) === poolKey.token_y) as TokenItemType,
   });
-  console.dir(res, { depth: null });
+  console.log(res);
+  console.timeEnd("processZapInPositionLiquidity");
+
+  // const res = await zapper.processZapOutPositionLiquidity({
+  //   owner: "orai1hvr9d72r5um9lvt0rpkd4r75vrsqtw6yujhqs2",
+  //   tokenId: 4275,
+  //   tokenOut: tokenIn,
+  //   zapFee: 0,
+  // });
+  // console.dir(res, { depth: null });
   // console.dir(res, { depth: null });
 }
 
