@@ -64,7 +64,8 @@ import {
   OBTC_ORAICHAIN_EXT_DENOM,
   DOGE_BNB_ORAICHAIN_DENOM,
   DOGE_BSC_CONTRACT,
-  SOL_BSC_CONTRACT
+  SOL_BSC_CONTRACT,
+  SOL_BNB_ORAICHAIN_DENOM
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -353,7 +354,7 @@ export const oraichainNetwork: CustomChainInfo = {
     },
     {
       coinDenom: "SOL",
-      coinMinimalDenom: SOL_BSC_CONTRACT,
+      coinMinimalDenom: SOL_BNB_ORAICHAIN_DENOM,
       coinDecimals: 6,
       bridgeTo: ["0x38"],
       coinGeckoId: "solana",
