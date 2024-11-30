@@ -63,7 +63,8 @@ import {
   HMSTR_ORAICHAIN_DENOM,
   OBTC_ORAICHAIN_EXT_DENOM,
   DOGE_BNB_ORAICHAIN_DENOM,
-  DOGE_BSC_CONTRACT
+  DOGE_BSC_CONTRACT,
+  SOL_BSC_CONTRACT
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -129,7 +130,8 @@ export type CoinGeckoId =
   | "pepe"
   | "simon-s-cat"
   | "hamster-kombat"
-  | "dogecoin";
+  | "dogecoin"
+  | "solana";
 
 export type NetworkType = "cosmos" | "evm";
 export interface NetworkConfig {
@@ -348,6 +350,14 @@ export const oraichainNetwork: CustomChainInfo = {
       bridgeTo: ["0x38"],
       coinGeckoId: "dogecoin",
       coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
+    },
+    {
+      coinDenom: "SOL",
+      coinMinimalDenom: SOL_BSC_CONTRACT,
+      coinDecimals: 6,
+      bridgeTo: ["0x38"],
+      coinGeckoId: "solana",
+      coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
     },
     // {
     //   coinDenom: "CAT",
@@ -720,6 +730,15 @@ export const chainInfos: CustomChainInfo[] = [
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinGeckoId: "dogecoin",
         coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
+      },
+      {
+        coinDenom: "SOL",
+        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + SOL_BSC_CONTRACT,
+        bridgeNetworkIdentifier: "0x38",
+        coinDecimals: 18,
+        prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
+        coinGeckoId: "solana",
+        coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
       }
       // {
       //   coinDenom: "CAT",
@@ -1119,6 +1138,16 @@ export const chainInfos: CustomChainInfo[] = [
         bridgeTo: ["Oraichain"],
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
+      },
+      {
+        coinDenom: "SOL",
+        coinMinimalDenom: "bep20_sol",
+        contractAddress: SOL_BSC_CONTRACT,
+        coinDecimals: 18,
+        coinGeckoId: "solana",
+        bridgeTo: ["Oraichain"],
+        prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
+        coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
       }
       // {
       //   coinDenom: "CAT",
