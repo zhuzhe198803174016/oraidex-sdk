@@ -64,8 +64,8 @@ import {
   OBTC_ORAICHAIN_EXT_DENOM,
   DOGE_BNB_ORAICHAIN_DENOM,
   DOGE_BSC_CONTRACT,
-  SOL_BSC_CONTRACT,
-  SOL_BNB_ORAICHAIN_DENOM
+  WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM,
+  WSOL_WORMHOLE_BSC_CONTRACT
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -353,9 +353,9 @@ export const oraichainNetwork: CustomChainInfo = {
       coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
     },
     {
-      coinDenom: "SOL",
-      coinMinimalDenom: SOL_BNB_ORAICHAIN_DENOM,
-      coinDecimals: 6,
+      coinDenom: "WSOL",
+      coinMinimalDenom: WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM,
+      coinDecimals: 9,
       bridgeTo: ["0x38"],
       coinGeckoId: "solana",
       coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
@@ -733,10 +733,10 @@ export const chainInfos: CustomChainInfo[] = [
         coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
       },
       {
-        coinDenom: "SOL",
-        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + SOL_BSC_CONTRACT,
+        coinDenom: "WSOL",
+        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + WSOL_WORMHOLE_BSC_CONTRACT,
         bridgeNetworkIdentifier: "0x38",
-        coinDecimals: 18,
+        coinDecimals: 9,
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinGeckoId: "solana",
         coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
@@ -1141,10 +1141,10 @@ export const chainInfos: CustomChainInfo[] = [
         coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
       },
       {
-        coinDenom: "SOL",
-        coinMinimalDenom: "bep20_sol",
-        contractAddress: SOL_BSC_CONTRACT,
-        coinDecimals: 18,
+        coinDenom: "WSOL",
+        coinMinimalDenom: "bep20_wsol",
+        contractAddress: WSOL_WORMHOLE_BSC_CONTRACT,
+        coinDecimals: 9,
         coinGeckoId: "solana",
         bridgeTo: ["Oraichain"],
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
