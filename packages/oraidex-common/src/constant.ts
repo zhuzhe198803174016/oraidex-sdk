@@ -106,6 +106,7 @@ export const HMSTR_ORAICHAIN_DENOM = "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj
 export const OBTC_ORAICHAIN_EXT_DENOM = "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/obtc";
 export const DOGE_BNB_ORAICHAIN_DENOM =
   "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/DogeBNB";
+export const SOL_BNB_ORAICHAIN_DENOM = "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/SolBNB";
 
 // config for oraichain token
 export const AIRI_CONTRACT = "orai10ldgzued6zjp0mkqwsv2mux3ml50l97c74x8sg";
