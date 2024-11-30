@@ -64,8 +64,8 @@ import {
   OBTC_ORAICHAIN_EXT_DENOM,
   DOGE_BNB_ORAICHAIN_DENOM,
   DOGE_BSC_CONTRACT,
-  SOL_BSC_CONTRACT,
-  SOL_BNB_ORAICHAIN_DENOM
+  WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM,
+  WSOL_WORMHOLE_BSC_CONTRACT
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -354,8 +354,8 @@ export const oraichainNetwork: CustomChainInfo = {
     },
     {
       coinDenom: "SOL",
-      coinMinimalDenom: SOL_BNB_ORAICHAIN_DENOM,
-      coinDecimals: 6,
+      coinMinimalDenom: WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM,
+      coinDecimals: 9,
       bridgeTo: ["0x38"],
       coinGeckoId: "solana",
       coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
@@ -734,9 +734,9 @@ export const chainInfos: CustomChainInfo[] = [
       },
       {
         coinDenom: "SOL",
-        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + SOL_BSC_CONTRACT,
+        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + WSOL_WORMHOLE_BSC_CONTRACT,
         bridgeNetworkIdentifier: "0x38",
-        coinDecimals: 18,
+        coinDecimals: 9,
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinGeckoId: "solana",
         coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
@@ -1142,9 +1142,9 @@ export const chainInfos: CustomChainInfo[] = [
       },
       {
         coinDenom: "SOL",
-        coinMinimalDenom: "bep20_sol",
-        contractAddress: SOL_BSC_CONTRACT,
-        coinDecimals: 18,
+        coinMinimalDenom: "bep20_wsol",
+        contractAddress: WSOL_WORMHOLE_BSC_CONTRACT,
+        coinDecimals: 9,
         coinGeckoId: "solana",
         bridgeTo: ["Oraichain"],
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
