@@ -67,7 +67,9 @@ import {
   DOGE_BNB_ORAICHAIN_DENOM,
   DOGE_BSC_CONTRACT,
   jUSDC_TON_CONTRACT,
-  HMSTR_TON_CONTRACT
+  HMSTR_TON_CONTRACT,
+  WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM,
+  WSOL_WORMHOLE_BSC_CONTRACT
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -136,7 +138,8 @@ export type CoinGeckoId =
   | "pepe"
   | "simon-s-cat"
   | "hamster-kombat"
-  | "dogecoin";
+  | "dogecoin"
+  | "solana";
 
 export type NetworkType = "cosmos" | "evm" | "ton";
 export interface NetworkConfig {
@@ -426,6 +429,14 @@ export const oraichainNetwork: CustomChainInfo = {
       bridgeTo: ["0x38"],
       coinGeckoId: "dogecoin",
       coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
+    },
+    {
+      coinDenom: "WSOL",
+      coinMinimalDenom: WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM,
+      coinDecimals: 9,
+      bridgeTo: ["0x38"],
+      coinGeckoId: "solana",
+      coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
     },
     // {
     //   coinDenom: "CAT",
@@ -801,6 +812,15 @@ export const chainInfos: CustomChainInfo[] = [
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinGeckoId: "dogecoin",
         coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
+      },
+      {
+        coinDenom: "WSOL",
+        coinMinimalDenom: ORAI_BRIDGE_EVM_DENOM_PREFIX + WSOL_WORMHOLE_BSC_CONTRACT,
+        bridgeNetworkIdentifier: "0x38",
+        coinDecimals: 9,
+        prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
+        coinGeckoId: "solana",
+        coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
       }
       // {
       //   coinDenom: "CAT",
@@ -1200,6 +1220,16 @@ export const chainInfos: CustomChainInfo[] = [
         bridgeTo: ["Oraichain"],
         prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
         coinImageUrl: "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png?1696501409"
+      },
+      {
+        coinDenom: "WSOL",
+        coinMinimalDenom: "bep20_wsol",
+        contractAddress: WSOL_WORMHOLE_BSC_CONTRACT,
+        coinDecimals: 9,
+        coinGeckoId: "solana",
+        bridgeTo: ["Oraichain"],
+        prefixToken: ORAI_BRIDGE_EVM_DENOM_PREFIX,
+        coinImageUrl: "https://assets.coingecko.com/coins/images/4128/standard/solana.png?1718769756"
       }
       // {
       //   coinDenom: "CAT",
