@@ -108,6 +108,8 @@ export const DOGE_BNB_ORAICHAIN_DENOM =
   "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/DogeBNB";
 export const WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM =
   "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/oraib0x4VH72cCsNwZwLtHtBnXuCxHWf4mB";
+export const MAX_ORAICHAIN_DENOM =
+  "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/oraim8c9d1nkfuQk9EzGYEUGxqL3MHQYndRw1huVo5h";
 
 // config for oraichain token
 export const AIRI_CONTRACT = "orai10ldgzued6zjp0mkqwsv2mux3ml50l97c74x8sg";
@@ -163,6 +165,9 @@ export const BASE_API_URL = "https://api.oraidex.io";
 
 // alpha smart router
 export const OSMOSIS_ROUTER_CONTRACT = "osmo1h3jkejkcpthl45xrrm5geed3eq75p5rgfce9taufkwfr89k63muqweu2y7";
+
+// Sol
+export const MAX_SOL_CONTRACT_ADDRESS = "oraim8c9d1nkfuQk9EzGYEUGxqL3MHQYndRw1huVo5h";
 
 // websocket consts
 export const WEBSOCKET_RECONNECT_ATTEMPTS = 5;
@@ -238,3 +243,5 @@ export const gravityContracts: Omit<Record<EvmChainId, string>, "0x1ae6"> = {
   "0x01": GRAVITY_EVM_CONTRACT,
   "0x2b6653dc": GRAVITY_TRON_CONTRACT
 };
+
+export const solChainId = "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp";
