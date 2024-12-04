@@ -68,7 +68,8 @@ import {
   WSOL_WORMHOLE_BSC_CONTRACT,
   solChainId,
   MAX_SOL_CONTRACT_ADDRESS,
-  MAX_ORAICHAIN_DENOM
+  MAX_ORAICHAIN_DENOM,
+  ORAI_SOL_CONTRACT_ADDRESS
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -226,7 +227,7 @@ export const OraiToken: BridgeAppCurrency = {
   coinMinimalDenom: "orai",
   coinDecimals: 6,
   coinGeckoId: "oraichain-token",
-  bridgeTo: ["0x38", "0x01", "injective-1"],
+  bridgeTo: ["0x38", "0x01", "injective-1", solChainId],
   coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/7533.png",
   gasPriceStep: {
     low: 0.003,
@@ -616,6 +617,15 @@ export const solanaMainnet: CustomChainInfo = {
       coinGeckoId: "max.clan",
       coinImageUrl:
         "https://pump.mypinata.cloud/ipfs/QmcGwYebsQfYbNSM9QDAMS2wKZ8fZNEiMbezJah1zgEWWS?img-width=256&img-dpr=2"
+    },
+    {
+      coinDenom: "ORAI",
+      coinMinimalDenom: "s20_orai",
+      coinDecimals: 8,
+      bridgeTo: ["Oraichain"],
+      contractAddress: ORAI_SOL_CONTRACT_ADDRESS,
+      coinGeckoId: "oraichain-token",
+      coinImageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/7533.png"
     }
   ],
   get feeCurrencies() {
