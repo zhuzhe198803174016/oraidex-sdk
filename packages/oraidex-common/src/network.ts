@@ -140,7 +140,7 @@ export type CoinGeckoId =
   | "hamster-kombat"
   | "dogecoin"
   | "solana"
-  | "max.clan";
+  | "max-2";
 
 export type NetworkType = "cosmos" | "evm" | "svm";
 export interface NetworkConfig {
@@ -579,7 +579,7 @@ export const oraichainNetwork: CustomChainInfo = {
     },
     {
       coinDenom: "MAX",
-      coinGeckoId: "max.clan",
+      coinGeckoId: "max-2",
       coinMinimalDenom: MAX_ORAICHAIN_DENOM,
       bridgeTo: [solChainId],
       coinDecimals: 6,
@@ -614,7 +614,7 @@ export const solanaMainnet: CustomChainInfo = {
       coinDecimals: 6,
       bridgeTo: ["Oraichain"],
       contractAddress: MAX_SOL_CONTRACT_ADDRESS,
-      coinGeckoId: "max.clan",
+      coinGeckoId: "max-2",
       coinImageUrl:
         "https://pump.mypinata.cloud/ipfs/QmcGwYebsQfYbNSM9QDAMS2wKZ8fZNEiMbezJah1zgEWWS?img-width=256&img-dpr=2"
     },
