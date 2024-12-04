@@ -119,10 +119,8 @@ export const MAX_ORAICHAIN_DENOM =
   "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/oraim8c9d1nkfuQk9EzGYEUGxqL3MHQYndRw1huVo5h";
 
 // config solana
-export const ORAICHAIN_RELAYER_ADDRESS = "orai1ehmhqcn8erf3dgavrca69zgp4rtxj5kqgtcnyd";
-export const SOL_RELAYER_ADDRESS = "4k7xvinq6nB221iBhcP9uMFCPFh29MxQ6LieMH7cqw45";
 export const MAX_SOL_CONTRACT_ADDRESS = "oraim8c9d1nkfuQk9EzGYEUGxqL3MHQYndRw1huVo5h";
-export const ORAI_SOL_CONTRACT_ADDRESS = "orai1f5j9myddepjuq0m6jdmsy2c64vsmrqpd53mad6edrn2j30f9tups7w2lce";
+export const ORAI_SOL_CONTRACT_ADDRESS = "2hZWncnmsSMdbkdwzSHJfrnDVkL66g63gncdRWqjTbBB";
 export const SOLANA_RPC = "https://swr.xnftdata.com/rpc-proxy/";
 export const SOLANA_WEBSOCKET = "wss://go.getblock.io/52d75331a9b74f9fa4a0056f15a1c022";
 export const MEMO_PROGRAM_ID = "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr";
