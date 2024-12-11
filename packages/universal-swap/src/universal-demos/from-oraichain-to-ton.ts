@@ -1,31 +1,52 @@
 import "dotenv/config";
 import { CosmosWalletImpl } from "./offline-wallet";
 import { UniversalSwapHandler } from "../handler";
-import { cosmosTokens, flattenTokens, generateError, getTokenOnOraichain, toAmount } from "@oraichain/oraidex-common";
+import {
+  cosmosTokens,
+  flattenTokens,
+  generateError,
+  getTokenOnOraichain,
+  toAmount,
+  jUSDC_TON_CONTRACT
+} from "@oraichain/oraidex-common";
 
 const router = {
-  swapAmount: "16000000",
-  returnAmount: "1000000",
+  swapAmount: "1300000",
+  returnAmount: "81199",
   routes: [
     {
-      swapAmount: "16000000",
-      returnAmount: "1000000",
+      swapAmount: "1300000",
+      returnAmount: "81199",
       paths: [
         {
           chainId: "Oraichain",
-          tokenIn: "orai15un8msx3n5zf9ahlxmfeqd2kwa5wm0nrpxer304m9nd5q6qq0g6sku5pdd",
-          tokenInAmount: "16000000",
+          tokenIn: "orai",
+          tokenInAmount: "1300000",
           tokenOut: "EQB-MPwrd1G6WKNkLz_VnV6WqBDd142KMQv-g1O-8QUA3728",
-          tokenOutAmount: "1000000",
+          tokenOutAmount: "81199",
           tokenOutChainId: "ton",
           actions: [
+            {
+              type: "Swap",
+              protocol: "OraidexV3",
+              tokenIn: "orai",
+              tokenInAmount: "1300000",
+              tokenOut: "orai15un8msx3n5zf9ahlxmfeqd2kwa5wm0nrpxer304m9nd5q6qq0g6sku5pdd",
+              tokenOutAmount: "15081199",
+              swapInfo: [
+                {
+                  poolId: "orai-orai15un8msx3n5zf9ahlxmfeqd2kwa5wm0nrpxer304m9nd5q6qq0g6sku5pdd-3000000000-100",
+                  tokenOut: "orai15un8msx3n5zf9ahlxmfeqd2kwa5wm0nrpxer304m9nd5q6qq0g6sku5pdd"
+                }
+              ]
+            },
             {
               type: "Bridge",
               protocol: "Bridge",
               tokenIn: "orai15un8msx3n5zf9ahlxmfeqd2kwa5wm0nrpxer304m9nd5q6qq0g6sku5pdd",
-              tokenInAmount: "16000000",
+              tokenInAmount: "15081199",
               tokenOut: "EQB-MPwrd1G6WKNkLz_VnV6WqBDd142KMQv-g1O-8QUA3728",
-              tokenOutAmount: "1000000",
+              tokenOutAmount: "81199",
               tokenOutChainId: "ton",
               bridgeInfo: {
                 port: "transfer",
@@ -38,14 +59,13 @@ const router = {
     }
   ]
 };
-const alphaSwapToOraichain = async () => {
-  const wallet = new CosmosWalletImpl(process.env.MNEMONIC);
-  const chainId = "Oraichain";
-  const sender = await wallet.getKeplrAddr(chainId);
 
-  const fromAmount = 16;
+const swapOraichainToTon = async () => {
+  const wallet = new CosmosWalletImpl(process.env.MNEMONIC);
+  const sender = await wallet.getKeplrAddr("Oraichain");
+  const fromAmount = 1.3;
   console.log("sender: ", sender);
-  const originalFromToken = flattenTokens.find((t) => t.coinGeckoId === "usd-coin" && t.chainId === chainId);
+  const originalFromToken = flattenTokens.find((t) => t.coinGeckoId === "oraichain-token" && t.chainId === "Oraichain");
   const originalToToken = flattenTokens.find((t) => t.coinGeckoId === "usd-coin" && t.chainId === "ton");
 
   if (!originalToToken) throw generateError("Could not find original to token");
@@ -58,16 +78,16 @@ const alphaSwapToOraichain = async () => {
       sender: {
         cosmos: sender,
         // evm: "0x8c7E0A841269a01c0Ab389Ce8Fb3Cf150A94E797",
+        // ton: "UQD3zsGYoDGgpambcp7SquM3wJqo6Yc-ksEtCGCDS8JwGQpp"
         ton: "UQDOAHXyCPFOXAXm9c1P_NeNEeSWy6IaRHqJRnBUp0jMZ6i3"
       },
       fromAmount,
       userSlippage: 1,
-      // relayerFee: {
-      //   relayerAmount: "100000",
-      //   relayerDecimals: 6
-      // },
-      // recipientAddress: "celestia13lpgsy2dk9ftwac2uagw7fc2fw35cdp00xucfz",
-      simulatePrice: "1000000",
+      relayerFee: {
+        relayerAmount: "100000",
+        relayerDecimals: 6
+      },
+      simulatePrice: "1100000",
       simulateAmount: toAmount(fromAmount, originalToToken.decimals).toString(),
       alphaSmartRoutes: router
     },
@@ -85,6 +105,6 @@ const alphaSwapToOraichain = async () => {
   }
 };
 
-(() => {
-  alphaSwapToOraichain();
+(async () => {
+  await swapOraichainToTon();
 })();
