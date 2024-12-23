@@ -73,7 +73,9 @@ import {
   solChainId,
   MAX_SOL_CONTRACT_ADDRESS,
   MAX_ORAICHAIN_DENOM,
-  ORAI_SOL_CONTRACT_ADDRESS
+  ORAI_SOL_CONTRACT_ADDRESS,
+  RACKS_ORAICHAIN_DENOM,
+  RACKS_SOL_CONTRACT_ADDRESS
 } from "./constant";
 import { listOsmosisToken } from "./alpha-network";
 import { celestiaNetwork } from "./celestia-network";
@@ -146,7 +148,9 @@ export type CoinGeckoId =
   | "hamster-kombat"
   | "dogecoin"
   | "solana"
-  | "max-2";
+  | "max-2"
+  | "black-rack"
+  | string;
 
 export type NetworkType = "cosmos" | "evm" | "ton" | "svm";
 export interface NetworkConfig {
@@ -664,6 +668,15 @@ export const oraichainNetwork: CustomChainInfo = {
       coinDecimals: 6,
       coinImageUrl:
         "https://pump.mypinata.cloud/ipfs/QmcGwYebsQfYbNSM9QDAMS2wKZ8fZNEiMbezJah1zgEWWS?img-width=256&img-dpr=2"
+    },
+    {
+      coinDenom: "RACKS",
+      coinGeckoId: "black-rack",
+      coinMinimalDenom: RACKS_ORAICHAIN_DENOM,
+      bridgeTo: [solChainId],
+      coinDecimals: 6,
+      coinImageUrl:
+        "https://pump.mypinata.cloud/ipfs/QmcGwYebsQfYbNSM9QDAMS2wKZ8fZNEiMbezJah1zgEWWS?img-width=256&img-dpr=2"
     }
   ]
 };
@@ -696,6 +709,15 @@ export const solanaMainnet: CustomChainInfo = {
       coinGeckoId: "max-2",
       coinImageUrl:
         "https://pump.mypinata.cloud/ipfs/QmcGwYebsQfYbNSM9QDAMS2wKZ8fZNEiMbezJah1zgEWWS?img-width=256&img-dpr=2"
+    },
+    {
+      coinDenom: "RACKS",
+      coinMinimalDenom: "racks",
+      coinDecimals: 6,
+      bridgeTo: ["Oraichain"],
+      contractAddress: RACKS_SOL_CONTRACT_ADDRESS,
+      coinGeckoId: "black-rack",
+      coinImageUrl: "https://ipfs.io/ipfs/QmVRPsBSHpamDzcDzVL9wsbB9gr4frtNrrFF7g44Xa9FuS"
     },
     {
       coinDenom: "ORAI",
