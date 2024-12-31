@@ -118,11 +118,11 @@ export const WSOL_WORMHOLE_BNB_ORAICHAIN_DENOM =
 export const MAX_ORAICHAIN_DENOM =
   "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/oraim8c9d1nkfuQk9EzGYEUGxqL3MHQYndRw1huVo5h";
 export const RACKS_ORAICHAIN_DENOM =
-  "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/oraigyiRnYoCgFiaLnpiaPvJjZbs5zzmWHp4sxBgZq3";
+  "factory/orai1wuvhex9xqs3r539mvc6mtm7n20fcj3qr2m0y9khx6n5vtlngfzes3k0rq9/D7yP4ycfsRWUGYionGpi64sLF2ddZ2JXxuRAti2M7uck";
 
 // config solana
 export const MAX_SOL_CONTRACT_ADDRESS = "oraim8c9d1nkfuQk9EzGYEUGxqL3MHQYndRw1huVo5h";
-export const RACKS_SOL_CONTRACT_ADDRESS = "oraigyiRnYoCgFiaLnpiaPvJjZbs5zzmWHp4sxBgZq3";
+export const RACKS_SOL_CONTRACT_ADDRESS = "D7yP4ycfsRWUGYionGpi64sLF2ddZ2JXxuRAti2M7uck";
 export const ORAI_SOL_CONTRACT_ADDRESS = "oraiyuR7hz6h7ApC56mb52CJjPZBB34USTjzaELoaPk";
 export const SOLANA_RPC = "https://swr.xnftdata.com/rpc-proxy/";
 export const SOLANA_WEBSOCKET = "wss://go.getblock.io/52d75331a9b74f9fa4a0056f15a1c022";
