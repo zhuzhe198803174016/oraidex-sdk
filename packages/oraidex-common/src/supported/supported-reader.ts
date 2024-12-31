@@ -4,7 +4,7 @@ import oraidexJson from "./config/oraidex.json";
 // BASE_URL: "https://raw.githubusercontent.com/oraidex/oraidex-sdk",
 // SUPPORTED_INFO: "/packages/oraidex-common/src/supported/config/"
 const ORAIDEX_API_ENDPOINTS = {
-  BASE_URL: "https://oraicommon-staging.oraidex.io",
+  BASE_URL: "https://oraicommon.oraidex.io",
   SUPPORTED_INFO: "/api/v1/supported-tokens/oraidex"
 };
 
