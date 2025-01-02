@@ -149,7 +149,7 @@ describe("test oraiswap-v3 helper functions", () => {
     [3061221885126646n, 2786952634213000000000000n, 2621000184602367837078723n, 2731770006227000000000000n],
     [3079921929921160n, 2871823670360000000000000n, 2621000184602367837078723n, 2786952634213000000000000n],
     [3053349216741434n, 2944520552269000000000000n, 2621000184602367837078723n, 2871823670360000000000000n],
-    [3224297089568735n, 2959279283182000000000000n, 2621000184602367837078723n, 2944520552269000000000000n],
+    [3224297089568735n, 2959279283182000000000000n, 2621000184602367837078723n, 2944520552269000000000000n]
   ])("getX getY", (liquidity, upperSqrtPrice, currentSqrtPrice, lowerSqrtPrice) => {
     const x = getX(liquidity, upperSqrtPrice, currentSqrtPrice, lowerSqrtPrice);
     const y = getY(liquidity, upperSqrtPrice, currentSqrtPrice, lowerSqrtPrice);
@@ -573,7 +573,7 @@ describe("test oraiswap-v3 helper functions", () => {
         contractAddress: "orai10ldgzued6zjp0mkqwsv2mux3ml50l97c74x8sg",
         prefix: "orai",
         coinGeckoId: "airight",
-        denom: "airi",
+        denom: "cw20:orai10ldgzued6zjp0mkqwsv2mux3ml50l97c74x8sg:AIRI",
         bridgeNetworkIdentifier: undefined,
         decimals: 6,
         bridgeTo: ["0x38"],

@@ -821,7 +821,7 @@ describe("test helper functions", () => {
   it.each<[AmountDetails, string, Coin, number]>([
     [
       {
-        injective: "10000"
+        "cw20:orai19rtmkk6sn4tppvjmp5d5zj6gfsdykrl5rw2euu5gwur3luheuuusesqn49:INJ": "10000"
       },
       "injective-protocol",
       coin(1000, INJECTIVE_ORAICHAIN_DENOM),
@@ -830,7 +830,7 @@ describe("test helper functions", () => {
     [
       {
         [INJECTIVE_ORAICHAIN_DENOM]: "1000",
-        injective: "10000"
+        "cw20:orai19rtmkk6sn4tppvjmp5d5zj6gfsdykrl5rw2euu5gwur3luheuuusesqn49:INJ": "10000"
       },
       "injective-protocol",
       coin(1000, INJECTIVE_ORAICHAIN_DENOM),
@@ -839,6 +839,9 @@ describe("test helper functions", () => {
     [{}, "injective-protocol", coin(1000, INJECTIVE_ORAICHAIN_DENOM), 0]
   ])("test-generate-convert-msgs", async (currentBal: AmountDetails, tokenInfo, toSend, msgLength) => {
     const token = getTokenOnOraichain(tokenInfo, oraidexCommon.oraichainTokens);
+
+    console.log({ token: oraidexCommon.oraichainTokens.filter((r) => r.coinGeckoId === "injective-protocol") });
+
     const msg = universalHelper.generateConvertCw20Erc20Message(
       currentBal,
       token,
@@ -854,11 +857,12 @@ describe("test helper functions", () => {
   it.each<[AmountDetails, string, number]>([
     [{}, "cosmos", 0],
     [{ [`${INJECTIVE_ORAICHAIN_DENOM}`]: "10" }, "injective-protocol", 1],
-    [{ injective: "10" }, "injective-protocol", 0]
+    [{ "cw20:orai19rtmkk6sn4tppvjmp5d5zj6gfsdykrl5rw2euu5gwur3luheuuusesqn49:INJ": "10" }, "injective-protocol", 0]
   ])(
     "test-generateConvertErc20Cw20Message-should-return-correct-message-length",
     (amountDetails, tokenInfo, expectedMessageLength) => {
       const token = getTokenOnOraichain(tokenInfo, oraidexCommon.oraichainTokens);
+
       const result = universalHelper.generateConvertErc20Cw20Message(
         amountDetails,
         token,
