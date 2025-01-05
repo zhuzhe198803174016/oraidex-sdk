@@ -274,7 +274,9 @@ export const getTokenOnOraichain = (coingeckoId: CoinGeckoId, oraichainTokens: T
   if (!filterOraichainToken.length) return undefined;
   if (filterOraichainToken.length === 1) return filterOraichainToken[0];
 
-  const oraichainToken = filterOraichainToken.find((token) => (isNative ? !token.evmDenoms : token.evmDenoms));
+  const oraichainToken = filterOraichainToken.find((token) =>
+    isNative ? !token.contractAddress : token.contractAddress
+  );
   return oraichainToken;
 };
 
