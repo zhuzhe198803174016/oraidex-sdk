@@ -123,7 +123,7 @@ export class OraidexCommon {
       ...this.oraichainNetwork,
 
       coinType: this.oraichainNetwork.coinType,
-      explorer: "https://scan.orai.io",
+      explorer: "https://scanium.io/Oraichain",
       fee: { gasPrice: "0.00506", amount: "1518", gas: "2000000" }, // 0.000500 ORAI
       factory: FACTORY_CONTRACT,
       factory_v2: FACTORY_V2_CONTRACT,
