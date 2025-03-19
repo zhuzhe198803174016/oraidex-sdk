@@ -1,4 +1,4 @@
-import { BridgeAppCurrency, ChainInfos, CoinType, MULTICALL_CONTRACT, OraiCommon, TokenItems } from "@oraichain/common";
+import { ChainInfos, MULTICALL_CONTRACT, OraiCommon, TokenItems } from "@oraichain/common";
 import { flatten } from "lodash";
 import { chainIcons, mapListWithIcon, tokensIcon } from "./config";
 import {
@@ -16,10 +16,9 @@ import {
   solChainId,
   STAKING_CONTRACT
 } from "./constant";
-import { NetworkConfig } from "./network";
 import { CustomChainInfo } from "./format-types";
 import { ChainIdEnum } from "./interface";
-import { FeeCurrency } from "@keplr-wallet/types";
+import { NetworkConfig } from "./network";
 
 export class OraidexCommon {
   static instance: OraidexCommon;
@@ -40,6 +39,10 @@ export class OraidexCommon {
 
   get otherChainTokens() {
     return this.tokenConfig.otherChainTokens;
+  }
+
+  get oraichainEvmTokens() {
+    return this.tokenConfig.oraichainTokens.filter((token: any) => token.evmExtendInfo);
   }
 
   get chainInfosCommon() {
