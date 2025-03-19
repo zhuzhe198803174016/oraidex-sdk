@@ -76,7 +76,8 @@ describe("should helper functions in helper run exactly", () => {
     expect(isEth).toEqual(expectedIsEthAddress);
   });
 
-  it("should get sub amount of evm token correctly and to sum display, to total display correctly", () => {
+  // this token is removed from oraidex-common
+  it.skip("should get sub amount of evm token correctly and to sum display, to total display correctly", () => {
     // test for milky token that have evm denom => have sub amount.
     console.log(
       "oraidexCommon.flattenTokens: ",

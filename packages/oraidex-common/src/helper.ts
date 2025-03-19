@@ -105,9 +105,9 @@ export const toDisplay = (amount: string | bigint, sourceDecimals: number = 6, d
 };
 
 export const getSubAmountDetails = (amounts: AmountDetails, tokenInfo: TokenItemType): AmountDetails => {
-  if (!tokenInfo.evmDenoms) return {};
+  if (!tokenInfo?.evmDenoms) return {};
   return Object.fromEntries(
-    tokenInfo.evmDenoms.map((denom) => {
+    tokenInfo?.evmDenoms.map((denom) => {
       return [denom, amounts?.[denom]];
     })
   );
