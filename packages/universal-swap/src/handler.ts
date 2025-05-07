@@ -819,7 +819,7 @@ export class UniversalSwapHandler {
       typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
       value: msgTransfer
     };
-    return client.signAndBroadcast(sender.cosmos, [msgTransferEncodeObj], "auto");
+    return client.signAndBroadcast(sender.cosmos, [msgTransferEncodeObj], this.swapData?.fee || "auto");
   }
 
   async alphaSmartRouterSwapNewMsg(swapRoute, universalSwapType, receiverAddresses) {
@@ -883,7 +883,7 @@ export class UniversalSwapHandler {
           gasPrice: this.getGasPriceFromToken()
         }
       );
-      return await client.signAndBroadcast(sender.cosmos, msgs, "auto");
+      return await client.signAndBroadcast(sender.cosmos, msgs, this.swapData?.fee || "auto");
     }
 
     if (universalSwapType === "ton-to-others") return this.transferAndSwapTon(swapRoute);
