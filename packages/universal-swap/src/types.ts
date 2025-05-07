@@ -1,4 +1,4 @@
-import { Coin } from "@cosmjs/amino";
+import { Coin, StdFee } from "@cosmjs/amino";
 import { AmountDetails, CosmosWallet, EvmWallet, TokenItemType } from "@oraichain/oraidex-common";
 import { SwapOperation, Uint128 } from "@oraichain/oraidex-contracts-sdk";
 import { Affiliate } from "@oraichain/oraidex-contracts-sdk/build/OraiswapMixedRouter.types";
@@ -67,6 +67,7 @@ export interface UniversalSwapData {
   readonly alphaSmartRoutes?: RouterResponse;
   readonly bridgeFee?: number;
   readonly affiliates?: Affiliate[];
+  readonly fee?: StdFee | "auto" | number;
 }
 
 /**
