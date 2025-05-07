@@ -615,7 +615,7 @@ export class UniversalSwapHandler {
     }
 
     // handle sign and broadcast transactions
-    return client.signAndBroadcast(sender.cosmos, encodedObjects, "auto");
+    return client.signAndBroadcast(sender.cosmos, encodedObjects, this.swapData?.fee || "auto");
   }
 
   // TODO: write test cases
