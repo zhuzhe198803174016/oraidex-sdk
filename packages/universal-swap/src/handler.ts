@@ -82,7 +82,7 @@ export class UniversalSwapHandler {
     public config: UniversalSwapConfig,
     private readonly oraidexCommon: OraidexCommon,
     private readonly currentTimestamp = Date.now()
-  ) {}
+  ) { }
 
   private getTokenOnOraichain(coinGeckoId: CoinGeckoId, isNative?: boolean): TokenItemType {
     const fromTokenOnOrai = getTokenOnOraichain(coinGeckoId, this.oraidexCommon.oraichainTokens, isNative);
@@ -548,8 +548,7 @@ export class UniversalSwapHandler {
         )} does not have any fee currencies. Something is wrong`
       );
     return GasPrice.fromString(
-      `${getCosmosGasPrice(this.swapData.originalFromToken.gasPriceStep)}${
-        this.swapData.originalFromToken.feeCurrencies[0].coinMinimalDenom
+      `${getCosmosGasPrice(this.swapData.originalFromToken.gasPriceStep)}${this.swapData.originalFromToken.feeCurrencies[0].coinMinimalDenom
       }`
     );
   }
@@ -579,7 +578,7 @@ export class UniversalSwapHandler {
         break;
       case "oraichain-to-evm":
         const { evm: metamaskAddress, tron: tronAddress } = this.swapData.sender;
-        if (!this.config?.swapOptions?.isCheckBalanceIbc) {
+        if (!this.config?.swapOptions?.skipRelayerFeeCheck) {
           const routerClient = new OraiswapRouterQueryClient(client, this.oraidexCommon.network.mixer_router);
           const isSufficient = await UniversalSwapHelper.checkFeeRelayer({
             originalFromToken: this.swapData.originalFromToken,
@@ -600,7 +599,7 @@ export class UniversalSwapHandler {
         throw generateError(`Universal swap type ${universalSwapType} is wrong. Should not call this function!`);
     }
 
-    if (!this.config?.swapOptions?.isCheckBalanceIbc) {
+    if (!this.config?.swapOptions?.skipBalanceIbcCheck) {
       const ibcInfo = this.getIbcInfo("Oraichain", originalToToken.chainId);
       await UniversalSwapHelper.checkBalanceChannelIbc(
         ibcInfo,
@@ -685,7 +684,7 @@ export class UniversalSwapHandler {
       return this.evmSwap(evmSwapData);
     }
 
-    if (!this.config?.swapOptions?.isCheckBalanceIbc) {
+    if (!this.config?.swapOptions?.skipBalanceIbcCheck) {
       await UniversalSwapHelper.checkBalanceIBCOraichain(
         originalToToken,
         originalFromToken,
@@ -696,7 +695,9 @@ export class UniversalSwapHandler {
         this.oraidexCommon.network,
         this.oraidexCommon.oraichainTokens
       );
+    }
 
+    if (!this.config?.swapOptions?.skipRelayerFeeCheck) {
       const routerClient = new OraiswapRouterQueryClient(client, this.oraidexCommon.network.mixer_router);
       const isSufficient = await UniversalSwapHelper.checkFeeRelayer({
         oraichainTokens: this.oraidexCommon.oraichainTokens,
@@ -846,7 +847,7 @@ export class UniversalSwapHandler {
         throw generateError(`Missing router universalSwapTypeFromCosmos: ${universalSwapType}!`);
 
       const isCheckBalance = ["oraichain-to-evm", "oraichain-to-cosmos"].includes(universalSwapType);
-      if (!this.config?.swapOptions?.isCheckBalanceIbc && isCheckBalance) {
+      if (!this.config?.swapOptions?.skipBalanceIbcCheck && isCheckBalance) {
         const { client } = await this.config.cosmosWallet.getCosmWasmClient(
           {
             chainId: originalFromToken.chainId as CosmosChainId,
@@ -909,7 +910,7 @@ export class UniversalSwapHandler {
       {}
     );
 
-    if (!this.config?.swapOptions?.isCheckBalanceIbc) {
+    if (!this.config?.swapOptions?.skipBalanceIbcCheck) {
       await UniversalSwapHelper.checkBalanceIBCOraichain(
         originalToToken,
         originalFromToken,
@@ -920,7 +921,9 @@ export class UniversalSwapHandler {
         this.oraidexCommon.network,
         this.oraidexCommon.oraichainTokens
       );
+    }
 
+    if (!this.config?.swapOptions?.skipRelayerFeeCheck) {
       const routerClient = new OraiswapRouterQueryClient(client, this.oraidexCommon.network.mixer_router);
       const isSufficient = await UniversalSwapHelper.checkFeeRelayer({
         oraichainTokens: this.oraidexCommon.oraichainTokens,
