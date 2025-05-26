@@ -102,7 +102,8 @@ export interface SwapOptions {
   isAlphaSmartRouter?: boolean;
   isIbcWasm?: boolean;
   isAlphaIbcWasm?: boolean;
-  isCheckBalanceIbc?: boolean;
+  skipBalanceIbcCheck?: boolean;
+  skipRelayerFeeCheck?: boolean;
 }
 
 export enum Type {
